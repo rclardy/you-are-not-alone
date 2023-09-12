@@ -6,6 +6,10 @@
   padding: 6rem;
 }
 
+.cardTitle {
+  color: green;
+}
+
 .description {
   display: inherit;
   justify-content: inherit;
@@ -48,7 +52,7 @@
 .card {
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
+  background: #3c493f;
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
 }
@@ -61,6 +65,8 @@
 .card h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
+  text-align: center;
+  color: #1b4d3e;
 }
 
 .card p {
