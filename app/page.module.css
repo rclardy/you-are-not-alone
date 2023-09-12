@@ -55,6 +55,7 @@
   background: #3c493f;
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
+  width: 50%;
 }
 
 .card span {
@@ -66,7 +67,7 @@
   font-weight: 600;
   margin-bottom: 0.7rem;
   text-align: center;
-  color: #1b4d3e;
+  color: #7e8d85;
 }
 
 .card p {
