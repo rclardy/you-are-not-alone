@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import styles from './page.module.css';
 
@@ -13,9 +14,18 @@ function QuoteBox() {
     <div className={styles.card}>
       <h2>Anonymous</h2>
       <div className={styles.cardText}>{quote}</div>
+      <Button />
     </div>
   );
 }
+
+const Button = ({ text, onClick }) => {
+  return (
+    <button type="button" onClick={ApiCall}>
+      Anotha One
+    </button>
+  );
+};
 
 export default async function Home() {
   return (
