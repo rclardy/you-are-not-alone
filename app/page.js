@@ -3,52 +3,55 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import { useState, useEffect } from 'react';
 
-function ApiCall() {
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
+export default function Home() {
+  const [fact, setFact] = useState(null);
 
   useEffect(() => {
-    fetch('https://catfact.ninja/fact')
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
+    // Fetch an initial fact when the component mounts
+    ApiCall().then((initialFact) => {
+      setFact(initialFact);
+    });
   }, []);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>no facts</p>;
+  const fetchNewFact = () => {
+    // Fetch a new fact and update the state
+    ApiCall().then((newFact) => {
+      setFact(newFact);
+    });
+  };
 
-  return <QuoteBox fact={data.fact} />;
+  return (
+    <main className={styles.main}>
+      <QuoteBox fact={fact} />
+      <Button onClick={fetchNewFact} />
+    </main>
+  );
+}
+
+async function ApiCall() {
+  try {
+    const res = await fetch('https://catfact.ninja/fact');
+    const data = await res.json();
+    return data.fact;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }
 
 function QuoteBox({ fact }) {
   return (
     <div className={styles.card}>
       <h2>Anonymous</h2>
-      <div className={styles.cardText}>{fact}</div>
-      <Button />
+      <div className={styles.cardText}>{fact || 'Loading...'}</div>
     </div>
   );
 }
 
 const Button = ({ onClick }) => {
-  const handleClick = () => {
-    const newQoute = ApiCall();
-  };
   return (
-    <button type="button" onClick={handleClick}>
+    <button type="button" onClick={onClick}>
       Anotha One
     </button>
   );
 };
-
-export default function Home() {
-  return (
-    <>
-      <main className={styles.main}>
-        <QuoteBox />
-      </main>
-    </>
-  );
-}
