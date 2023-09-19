@@ -8,14 +8,14 @@ export default function Home() {
 
   useEffect(() => {
     // Fetch an initial fact when the component mounts
-    ApiCall().then((initialFact) => {
+    apiCall().then((initialFact) => {
       setFact(initialFact);
     });
   }, []);
 
   const fetchNewFact = () => {
     // Fetch a new fact and update the state
-    ApiCall().then((newFact) => {
+    apiCall().then((newFact) => {
       setFact(newFact);
     });
   };
@@ -28,7 +28,7 @@ export default function Home() {
   );
 }
 
-async function ApiCall() {
+const apiCall = async () => {
   try {
     const res = await fetch('https://catfact.ninja/fact');
     const data = await res.json();
@@ -37,7 +37,7 @@ async function ApiCall() {
     console.error(error);
     return null;
   }
-}
+};
 
 function QuoteBox({ fact }) {
   return (
