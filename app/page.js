@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './page.module.css';
+import Layout from './components/layout';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
@@ -21,10 +22,12 @@ export default function Home() {
   };
 
   return (
-    <main className={styles.main}>
-      <QuoteBox fact={fact} />
-      <Button onClick={fetchNewFact} />
-    </main>
+    <Layout>
+      <main className={styles.main}>
+        <QuoteBox fact={fact} />
+        <Button onClick={fetchNewFact} />
+      </main>
+    </Layout>
   );
 }
 
